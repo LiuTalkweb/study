@@ -3,6 +3,8 @@ package springDemo.com.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +26,17 @@ public class DemoController {
 	@Autowired
 	private MsgProducer msgProducer;
 	
+	private static final Logger logger = LoggerFactory.getLogger(DemoController.class); 
+	
 	@GetMapping("/aa")
 	List<Map<String, Object>> test() {
 		System.out.println(aaaService.toString()+" class: "+ aaaService.getClass());
 		List<Map<String, Object>> list = aaaService.dataList();
+		
+		logger.info("abcd-info");
+		logger.warn("abcd-warn");
+		logger.error("abcd-error");
+		
 		return list;
 	}
 	
